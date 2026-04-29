@@ -14,7 +14,7 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 ### CheriBSD: 
 - `cheribsd/lib/libc/stdlib/malloc/mrs`, contains the implementation of PoisonCap enforcement on allocation, e.g., poison on free, double free detection, clear PERM_POISON permission on allocation.
 - `cheribsd/sys/vm/`, `cheribsd/sys/riscv/riscv/`, `cheribsd/sys/kern/kern_cheri_revoke.c`, contains the implementation of PoisonCap kernel poison revoker.
-- `bin/cheribsdtest/cheribsdtest_poison.c`, cheribsdtest for testing poison revoker. 
+- `cheribsd/bin/cheribsdtest/cheribsdtest_poison.c`, cheribsdtest for testing poison revoker. 
 
 ### LLVM:
 - `llvm-project/llvm/lib/Target/RISCV/RISCVInstrInfoXCheri.td`, contains the assembler support for PoisonCap added instructions. 
@@ -23,8 +23,7 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 - `sqlite/src/mem5.c`, contains the PoisonCap extension to SQLite's MEMSYS5 allocator, which also include CHERI spatial safety exntension.
 - `sqlite/test/speedtest1.c`, contains the tests that we run on SQLite.
 ### Juliet-Test-Suite: 
-The juliet test suite test cases we used are placed within, Juliet-test-suite-cases.
-
+The tests we used for security evaluations are placed with `juliet-test-suite-c/bin`
 ## Omissions
 
 This repository is intended to be anonymized via <https://anonymous.4open.science>, which has a 2GB-per-user limit.

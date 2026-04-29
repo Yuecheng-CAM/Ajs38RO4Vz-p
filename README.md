@@ -9,10 +9,11 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 - `Toooba/libs/cheri-cap-lib`, contains the implementation of PoisonCap extended CHERI capability format
 
 ### QEMU: 
-- `qemu/target/cheri-common/`, contains the implementation of PoisonCap extended CHERI capability format, PoisonCap added instructions and memory access check 
+- `qemu/target/cheri-common/`,  contains the implementation of PoisonCap extended CHERI capability format, PoisonCap added instructions and memory access check 
 
 ### CheriBSD: 
-- `cheribsd/lib/libc/stdlib/malloc/mrs`, contains the implementation of PoisonCap enforcement on allocation, e.g., poison on free, double free detection, clear PERM_POISON permission on allocation.  
+- `cheribsd/lib/libc/stdlib/malloc/mrs`, contains the implementation of PoisonCap enforcement on allocation, e.g., poison on free, double free detection, clear PERM_POISON permission on allocation.
+- `sys/vm/vm_cheri_revoke.c`, `cheribsd/sys/riscv/riscv/cheri_revoke_machdep_tests.c`, contains the implementation PoisonCap kernel poison revoker. 
 
 ### LLVM:
 - `llvm-project/llvm/lib/Target/RISCV/RISCVInstrInfoXCheri.td`, contains the assembler support for PoisonCap added instructions. 

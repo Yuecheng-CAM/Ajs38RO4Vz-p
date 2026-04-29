@@ -29,8 +29,8 @@ The tests we used for security evaluations are placed with `juliet-test-suite-c/
 This repository is intended to be anonymized via <https://anonymous.4open.science>, which has a 2GB-per-user limit.
 To avoid this limit we have removed the following irrelevant, redundant, or binary files:
 
-- directories from `cheribsd/contrib` took up ~650MB of source files unrelated to IOCaps
-- `cheribsd/sys/contrib` took up ~370MB of source files unrelated to IOCaps
-- `qemu/roms` took up ~660MB and contained binary boot ROMs unrelated to IOCaps
+- directories from `cheribsd/contrib` took up ~650MB of source files unrelated to PoisonCap
+- `cheribsd/sys/contrib` took up ~370MB of source files unrelated to PoisonCap
+- `qemu/roms` took up ~660MB and contained binary boot ROMs unrelated to PoisonCap
 
 We have also removed `*.git*` files throughout.

@@ -10,6 +10,8 @@ The pipeline related changes are placed within, Toooba/src_Core/RISCY_OOO/procs,
 Changes to CHERI architecture are placed within, Toooba/libs/cheri-cap-lib, where the reserved bits in capability are defined as POISON, PERM_POISON permission, POISON_VERSION. 
 
 # QEMU: 
+codes that are relevant:
+qemu/target/cheri-common/op_helper_cheri_common.c, cheri-helper-utils.h, cheri_tagmem.c, cheri-helper-common.h, cheri_utils.h, 
 
 # CheriBSD: 
 

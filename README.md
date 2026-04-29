@@ -4,11 +4,9 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 
 ## Relevant Files
 ### CHERI-Toooba: 
-- `Toooba/src_Core/RISCY_OOO/coherence/src/`, the cache system related changes are placed mainly within Toooba/src_Core/RISCY_OOO/coherence/src, where we detect access to a poisoned memory, also mark and replaced poisoned cache lines. 
-
-The pipeline related changes are placed within, Toooba/src_Core/RISCY_OOO/procs, that includes the implementation of new instructions such as cpoison, cgetcappoison etc. 
-
-Changes to CHERI architecture are placed within, Toooba/libs/cheri-cap-lib, where the reserved bits in capability are defined as POISON, PERM_POISON permission, POISON_VERSION. 
+- `Toooba/src_Core/RISCY_OOO/coherence/src/`, contains PoisonCap changes to memory subsystem
+- `Toooba/src_Core/RISCY_OOO/procs`, contains PoisonCap added instructions,and PoisonCap load detection. 
+- `Toooba/libs/cheri-cap-lib`, contains PoisonCap extension to CHERI capability format
 
 ### QEMU: 
 codes that are relevant:

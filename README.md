@@ -4,7 +4,7 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 
 ## Relevant Files
 ### CHERI-Toooba: 
-- `Toooba/src_Core/RISCY_OOO/coherence/src/`, contains PoisonCap changes to memory subsystem include extension to cache replacement algorithm, and store-after-free detection logic
+- `Toooba/src_Core/RISCY_OOO/coherence/src/`, contains PoisonCap changes to memory subsystem include extension to cache replacement algorithm, and PoisonCap detection logic
 - `Toooba/src_Core/RISCY_OOO/procs`, contains the implementations of PoisonCap added instructions,and PoisonCap detection logic
 - `Toooba/libs/cheri-cap-lib`, contains the implementation of PoisonCap extended CHERI capability format
 

@@ -557,8 +557,16 @@ static void quarantine_flush(void){
   }
 }
 static void quarantine_revoke(void){
-  	(void)cheri_revoke(CHERI_REVOKE_ASYNC, 0, NULL);
-    quarantine_flush();
+  	//(void)cheri_revoke(CHERI_REVOKE_ASYNC, 0, NULL);
+  //printf("nested_revoke\n");
+  struct cheri_revoke_syscall_info crsi;
+
+  crsi.epochs.enqueue = 0xC0FFEE;
+  crsi.epochs.dequeue = 0xB00;
+
+  cheri_revoke(CHERI_REVOKE_LAST_PASS | CHERI_REVOKE_IGNORE_START |
+            CHERI_REVOKE_TAKE_STATS , 0, &crsi);
+  quarantine_flush();
 
 }
 

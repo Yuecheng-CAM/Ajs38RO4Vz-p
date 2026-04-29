@@ -49,7 +49,11 @@ static const char zHelp[] =
 #include <stdarg.h>
 #include <string.h>
 #include <ctype.h>
-#include <cheri/cheric.h>
+#include "cheri/cheric.h"
+#include <sys/mman.h>
+#include <cheri/revoke.h>
+
+#include <sys/sysctl.h>
 #ifndef _WIN32
 # include <unistd.h>
 #else
@@ -551,7 +555,7 @@ void testset_main(void){
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
 
-
+ 
   n = sz;
   speedtest1_begin_test(110, "%d ordered INSERTS with one index/PK", n);
   speedtest1_exec("BEGIN");
@@ -593,7 +597,7 @@ void testset_main(void){
   sqlite3_create_function(g.db, "group_concat", 1, SQLITE_UTF8, 0,
                           0, groupStep, groupFinal);
 #endif
-
+  
   n = 25;
   speedtest1_begin_test(130, "%d SELECTS, numeric BETWEEN, unindexed", n);
   speedtest1_exec("BEGIN");
@@ -612,8 +616,8 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
-
+  
+  
   n = 10;
   speedtest1_begin_test(140, "%d SELECTS, LIKE, unindexed", n);
   speedtest1_exec("BEGIN");
@@ -634,8 +638,8 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
-
+  
+  
   n = 10;
   speedtest1_begin_test(142, "%d SELECTS w/ORDER BY, unindexed", n);
   speedtest1_exec("BEGIN");
@@ -656,8 +660,9 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
+  
   n = 10; /* g.szTest/5; */
+  
   speedtest1_begin_test(145, "%d SELECTS w/ORDER BY and LIMIT, unindexed", n);
   speedtest1_exec("BEGIN");
   speedtest1_prepare(
@@ -677,8 +682,8 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
-
+  
+  /*
   speedtest1_begin_test(150, "CREATE INDEX five times");
   speedtest1_exec("BEGIN;");
   speedtest1_exec("CREATE UNIQUE INDEX t1b ON t1(b);");
@@ -688,8 +693,8 @@ void testset_main(void){
   speedtest1_exec("CREATE INDEX t3bc ON t3(b,c);");
   speedtest1_exec("COMMIT;");
   speedtest1_end_test();
-
-
+  */
+  
   n = sz/5;
   speedtest1_begin_test(160, "%d SELECTS, numeric BETWEEN, indexed", n);
   speedtest1_exec("BEGIN");
@@ -708,7 +713,7 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
+  /*
 
   n = sz/5;
   speedtest1_begin_test(161, "%d SELECTS, numeric BETWEEN, PK", n);
@@ -728,8 +733,8 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
-
+  */
+  /*
   n = sz/5;
   speedtest1_begin_test(170, "%d SELECTS, text BETWEEN, indexed", n);
   speedtest1_exec("BEGIN");
@@ -747,7 +752,8 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
+  */
+  /*
   n = sz;
   speedtest1_begin_test(180, "%d INSERTS with three indexes", n);
   speedtest1_exec("BEGIN");
@@ -763,25 +769,25 @@ void testset_main(void){
   speedtest1_exec("INSERT INTO t4 SELECT * FROM t1");
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
+  */
   n = sz;
   speedtest1_begin_test(190, "DELETE and REFILL one table", n);
   speedtest1_exec("DELETE FROM t2;");
   speedtest1_exec("INSERT INTO t2 SELECT * FROM t1;");
   speedtest1_end_test();
 
-
+  /*
   speedtest1_begin_test(200, "VACUUM");
   speedtest1_exec("VACUUM");
   speedtest1_end_test();
-
-
+  */
+  
   speedtest1_begin_test(210, "ALTER TABLE ADD COLUMN, and query");
   speedtest1_exec("ALTER TABLE t2 ADD COLUMN d DEFAULT 123");
   speedtest1_exec("SELECT sum(d) FROM t2");
   speedtest1_end_test();
 
-
+  /*
   n = sz/5;
   speedtest1_begin_test(230, "%d UPDATES, numeric BETWEEN, indexed", n);
   speedtest1_exec("BEGIN");
@@ -797,7 +803,7 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
+  */
 
   n = sz;
   speedtest1_begin_test(240, "%d UPDATES of individual rows", n);
@@ -823,7 +829,7 @@ void testset_main(void){
   speedtest1_end_test();
 
 
-
+  /*
   n = sz/5;
   speedtest1_begin_test(270, "%d DELETEs, numeric BETWEEN, indexed", n);
   speedtest1_exec("BEGIN");
@@ -839,7 +845,7 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
+  */
 
   n = sz;
   speedtest1_begin_test(280, "%d DELETEs of individual rows", n);
@@ -855,12 +861,12 @@ void testset_main(void){
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
 
-
+  /*
   speedtest1_begin_test(290, "Refill two %d-row tables using REPLACE", sz);
   speedtest1_exec("REPLACE INTO t2(a,b,c) SELECT a,b,c FROM t1");
   speedtest1_exec("REPLACE INTO t3(a,b,c) SELECT a,b,c FROM t1");
   speedtest1_end_test();
-
+  */
   speedtest1_begin_test(300, "Refill a %d-row table using (b&1)==(a&1)", sz);
   speedtest1_exec("DELETE FROM t2;");
   speedtest1_exec("INSERT INTO t2(a,b,c)\n"
@@ -869,7 +875,7 @@ void testset_main(void){
                   " SELECT a,b,c FROM t1  WHERE (b&1)<>(a&1);");
   speedtest1_end_test();
 
-
+  /*
   n = sz/5;
   speedtest1_begin_test(310, "%d four-ways joins", n);
   speedtest1_exec("BEGIN");
@@ -889,7 +895,7 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
-
+  */
   speedtest1_begin_test(320, "subquery in result set", n);
   speedtest1_prepare(
     "SELECT sum(a), max(c),\n"
@@ -925,7 +931,7 @@ void testset_main(void){
     speedtest1_run();
   }
   speedtest1_end_test();
-
+  /*
   sz = n = g.szTest*700;
   zNum[0] = 0;
   maxb = roundup_allones(sz/3);
@@ -944,6 +950,8 @@ void testset_main(void){
   }
   speedtest1_exec("COMMIT");
   speedtest1_end_test();
+  */
+  /*
   speedtest1_begin_test(510, "%d SELECTS on a TEXT PK", n);
   speedtest1_prepare("SELECT b FROM t6 WHERE a=?1; --  %d times",n);
   for(i=1; i<=n; i++){
@@ -953,11 +961,13 @@ void testset_main(void){
     speedtest1_run();
   }
   speedtest1_end_test();
+  */
+  /*
   speedtest1_begin_test(520, "%d SELECT DISTINCT", n);
   speedtest1_exec("SELECT DISTINCT b FROM t5;");
   speedtest1_exec("SELECT DISTINCT b FROM t6;");
   speedtest1_end_test();
-
+  */
 
   speedtest1_begin_test(980, "PRAGMA integrity_check");
   speedtest1_exec("PRAGMA integrity_check");
@@ -1711,6 +1721,13 @@ static int xCompileOptions(void *pCtx, int nVal, char **azVal, char **azCol){
   return SQLITE_OK;
 }
 
+static inline int cgetpoison(char *a){
+       int poison = 0;
+       asm volatile("cgetpoison %0,%1" : "=r"(poison) : "C"(a));
+       return poison;
+}
+
+
 int main(int argc, char **argv){
   __attribute__((aligned(32)))
   //static unsigned char heap[50 * 1024 * 1024];
@@ -1725,6 +1742,22 @@ int main(int argc, char **argv){
      fprintf(stderr, "Failed to configure memsys3 %d \n", rc0);
      return 1;
   }
+  //void * ptr = sqlite3_malloc(128);
+  //sqlite3_free(ptr);
+  //struct cheri_revoke_syscall_info crsi;
+
+  //crsi.epochs.enqueue = 0xC0FFEE;
+  //crsi.epochs.dequeue = 0xB00;
+  //printf("ptr is tagged%d\n", cheri_gettag(ptr));
+//
+  //cheri_revoke(CHERI_REVOKE_LAST_PASS | CHERI_REVOKE_IGNORE_START |
+  //         CHERI_REVOKE_TAKE_STATS , 0, &crsi);
+
+  //printf("ptr is poisoned%d\n", cgetpoison(ptr));
+  //printf("ptr is tagged%d\n", cheri_gettag(ptr));
+
+  //printf("ptr res %x\n",* (int *)(ptr));
+
   //int rc1 = sqlite3_config(SQLITE_CONFIG_MALLOC, sqlite3MemGetMemsys3());
   int doAutovac = 0;            /* True for --autovacuum */
   int cacheSize = 0;            /* Desired cache size.  0 means default */

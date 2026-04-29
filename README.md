@@ -14,10 +14,12 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 ### CheriBSD: 
 - `cheribsd/lib/libc/stdlib/malloc/mrs`, contains the implementation of PoisonCap enforcement on allocation, e.g., poison on free, double free detection, clear PERM_POISON permission on allocation.  
 
+### LLVM:
+- `llvm-project/llvm/lib/Target/RISCV/RISCVInstrInfoXCheri.td`, contains the assembler support for PoisonCap added instructions. 
 
 ### SQLite: 
-the changes that are related to nested temporal safety evaluation on memsys5 allocator within SQLite are placed within src/mem5.c, where we modified MEMSYS5 allocator of SQLite to have CHERI spatial safety, and PoisonCap nested temporal safety. 
-
+- `sqlite/src/mem5.c`, contains the PoisonCap extension to SQLite's MEMSYS5 allocator, which also include CHERI spatial safety exntension.
+- `sqlite/test/speedtest1.c`, contains the tests that we run on SQLite.
 ### Juliet-Test-Suite: 
 The juliet test suite test cases we used are placed within, Juliet-test-suite-cases.
 

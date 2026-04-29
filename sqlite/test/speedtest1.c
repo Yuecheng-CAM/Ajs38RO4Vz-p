@@ -1742,19 +1742,19 @@ int main(int argc, char **argv){
      fprintf(stderr, "Failed to configure memsys3 %d \n", rc0);
      return 1;
   }
-  //void * ptr = sqlite3_malloc(128);
-  //sqlite3_free(ptr);
-  //struct cheri_revoke_syscall_info crsi;
+  void * ptr = sqlite3_malloc(128);
+  sqlite3_free(ptr);
+  struct cheri_revoke_syscall_info crsi;
 
-  //crsi.epochs.enqueue = 0xC0FFEE;
-  //crsi.epochs.dequeue = 0xB00;
-  //printf("ptr is tagged%d\n", cheri_gettag(ptr));
-//
-  //cheri_revoke(CHERI_REVOKE_LAST_PASS | CHERI_REVOKE_IGNORE_START |
-  //         CHERI_REVOKE_TAKE_STATS , 0, &crsi);
+  crsi.epochs.enqueue = 0xC0FFEE;
+  crsi.epochs.dequeue = 0xB00;
+  printf("ptr is tagged%d\n", cheri_gettag(ptr));
 
-  //printf("ptr is poisoned%d\n", cgetpoison(ptr));
-  //printf("ptr is tagged%d\n", cheri_gettag(ptr));
+  cheri_revoke(CHERI_REVOKE_LAST_PASS | CHERI_REVOKE_IGNORE_START |
+           CHERI_REVOKE_TAKE_STATS , 0, &crsi);
+
+ // printf("ptr is poisoned%d\n", cgetpoison(ptr));
+  printf("ptr is tagged%d\n", cheri_gettag(ptr));
 
   //printf("ptr res %x\n",* (int *)(ptr));
 

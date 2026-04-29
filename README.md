@@ -15,7 +15,7 @@ Changes to CHERI architecture are placed within, Toooba/libs/cheri-cap-lib, wher
 
 
 # SQLite: 
-the changes that are related to nested temporal safety are placed within src/mem5.c, where we modified MEMSYS5 allocator of SQLite to have CHERI spatial safety, and PoisonCap nested temporal safety. 
+the changes that are related to nested temporal safety evaluation on memsys5 allocator within SQLite are placed within src/mem5.c, where we modified MEMSYS5 allocator of SQLite to have CHERI spatial safety, and PoisonCap nested temporal safety. 
 
 # Juliet-Test-Suite: 
 The juliet test suite test cases we used are placed within, Juliet-test-suite-cases.

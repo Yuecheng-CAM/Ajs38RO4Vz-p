@@ -4,7 +4,7 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 
 ## Relevant Files
 ### CHERI-Toooba: 
-The cache system related changes are placed mainly within Toooba/src_Core/RISCY_OOO/coherence/src, where we detect access to a poisoned memory, also mark and replaced poisoned cache lines. 
+- `Toooba/src_Core/RISCY_OOO/coherence/src/`, the cache system related changes are placed mainly within Toooba/src_Core/RISCY_OOO/coherence/src, where we detect access to a poisoned memory, also mark and replaced poisoned cache lines. 
 
 The pipeline related changes are placed within, Toooba/src_Core/RISCY_OOO/procs, that includes the implementation of new instructions such as cpoison, cgetcappoison etc. 
 

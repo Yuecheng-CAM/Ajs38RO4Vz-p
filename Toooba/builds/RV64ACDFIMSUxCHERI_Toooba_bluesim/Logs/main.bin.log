@@ -1,0 +1,29 @@
+Running: /local/scratch/yw737/repo/TestRIG/riscv-implementations/Toooba_PCAP/Tests/elf_to_hex/elf_to_hex /local/scratch/yw737/repo/TestRIG/riscv-implementations/Toooba_PCAP/Tests/benchmarks/Toooba-mibench2/patricia/main.bin Mem.hex
+Finished with exit code 0
+Stdout:
+c_mem_load_elf: /local/scratch/yw737/repo/TestRIG/riscv-implementations/Toooba_PCAP/Tests/benchmarks/Toooba-mibench2/patricia/main.bin is a 64-bit ELF file
+Section .text.init      : addr         80000000 to addr         8000026c; size 0x     26c (= 620) bytes
+Section .text           : addr         8000026c to addr         80001946; size 0x    16da (= 5850) bytes
+Section .data           : addr         80001980 to addr         80019580; size 0x   17c00 (= 97280) bytes
+Section __cap_relocs    : addr         80019580 to addr         80019788; size 0x     208 (= 520) bytes
+Section .rodata.cst16   : addr         80019788 to addr         80019798; size 0x      10 (= 16) bytes
+Section .eh_frame_hdr   : addr         80019798 to addr         8001986c; size 0x      d4 (= 212) bytes
+Section .eh_frame       : addr         80019870 to addr         80019ae8; size 0x     278 (= 632) bytes
+Section .captable       : addr         80019ae8 to addr         80019ae8; size 0x       0 (= 0) bytes
+Section .tdata          : addr         80019ae8 to addr         80019ae8; size 0x       0 (= 0) bytes
+Section .got            : addr         80019af0 to addr         80019bd0; size 0x      e0 (= 224) bytes
+Section .sdata          : addr         80019bd0 to addr         80019c8c; size 0x      bc (= 188) bytes
+Section .sbss           : addr         80019c90 to addr         80019cb0; size 0x      20 (= 32) bytes
+Section .bss            : addr         8001a000 to addr         8011a060; size 0x  100060 (= 1048672) bytes
+Section .tbss           : addr         8011a060 to addr         8011a064; size 0x       4 (= 4) bytes
+Section .comment        : Ignored
+Section .riscv.attributes: Ignored
+Section .symtab         : Searching for addresses of '_start', 'exit' and 'tohost' symbols
+Writing symbols to:    symbol_table.txt
+Section .shstrtab       : Ignored
+Section .strtab         : Ignored
+Min addr:                    80000000 (hex)
+Max addr:                    8011a063 (hex)
+Writing mem hex to file 'Mem.hex'
+Subtracting 0x80000000 base from addresses
+Running: /local/scratch/yw737/repo/TestRIG/riscv-implementations/Toooba_PCAP/builds/RV64ACDFIMSUxCHERI_Toooba_bluesim/exe_HW_sim +tohost

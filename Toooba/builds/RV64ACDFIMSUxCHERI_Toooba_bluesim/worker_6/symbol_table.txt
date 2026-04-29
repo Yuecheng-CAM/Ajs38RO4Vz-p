@@ -1,0 +1,3 @@
+_start    0x80000000
+exit      0x800001ea
+tohost    0x80001708

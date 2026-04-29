@@ -1,6 +1,7 @@
 # ACM CCS 2026 open science artifacts submission
 
-This repo contains a list of artifacts. 
+This is a repository of all artifacts associated with our PoisonCap paper submission. It contains copies of our source code for our CHERI-enabled LLVM and QEMU fork, CheriBSD fork and CHERI-Toooba that has PoisonCap hardware, and software PoisonCap implementations. It also contains our fork of SQLite, and a list of Juliet Test Cases we have run.
+
 
 # CHERI-Toooba: 
 The cache system related changes are placed mainly within Toooba/src_Core/RISCY_OOO/coherence/src, where we detect access to a poisoned memory, also mark and replaced poisoned cache lines. 

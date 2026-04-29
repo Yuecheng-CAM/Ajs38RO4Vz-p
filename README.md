@@ -23,4 +23,13 @@ the changes that are related to nested temporal safety evaluation on memsys5 all
 ### Juliet-Test-Suite: 
 The juliet test suite test cases we used are placed within, Juliet-test-suite-cases.
 
+## Omissions
 
+This repository is intended to be anonymized via <https://anonymous.4open.science>, which has a 2GB-per-user limit.
+To avoid this limit we have removed the following irrelevant, redundant, or binary files:
+
+- directories from `cheribsd/contrib` took up ~650MB of source files unrelated to IOCaps
+- `cheribsd/sys/contrib` took up ~370MB of source files unrelated to IOCaps
+- `qemu/roms` took up ~660MB and contained binary boot ROMs unrelated to IOCaps
+
+We have also removed `*.git*` files throughout.

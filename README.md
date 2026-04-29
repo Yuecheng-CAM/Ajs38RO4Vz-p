@@ -1,8 +1,8 @@
-# Ajs38RO4Vz-p
+# ACM CCS 2026 open science artifacts submission
 
 This repo contains a list of artifacts. 
 
-CHERI-Toooba: 
+# CHERI-Toooba: 
 The cache system related changes are placed mainly within Toooba/src_Core/RISCY_OOO/coherence/src, where we detect access to a poisoned memory, also mark and replaced poisoned cache lines. 
 
 The pipeline related changes are placed within, Toooba/src_Core/RISCY_OOO/procs, that includes the implementation of new instructions such as cpoison, cgetcappoison etc. 

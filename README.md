@@ -20,10 +20,10 @@ This is a repository of all artifacts associated with our PoisonCap paper submis
 - `llvm-project/llvm/lib/Target/RISCV/RISCVInstrInfoXCheri.td`, contains the assembler support for PoisonCap added instructions. 
 
 ### SQLite: 
-- `sqlite/src/mem5.c`, contains the PoisonCap extension to SQLite's MEMSYS5 allocator, which also include CHERI spatial safety exntension.
+- `sqlite/src/mem5.c`, contains the PoisonCap extension to SQLite's MEMSYS5 allocator, which also include CHERI spatial safety extension.
 - `sqlite/test/speedtest1.c`, contains the tests that we run on SQLite.
 ### Juliet-Test-Suite: 
-The tests we used for security evaluations are placed with `juliet-test-suite-c/bin`
+The tests we used for security evaluations are placed in `juliet-test-suite-c/bin`
 ## Omissions
 
 This repository is intended to be anonymized via <https://anonymous.4open.science>, which has a 2GB-per-user limit.
